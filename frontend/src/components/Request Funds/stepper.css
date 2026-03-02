@@ -1,0 +1,56 @@
+.stepper-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px 0;
+    
+  }
+  
+  .step-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #374151;
+    border-radius: 50%;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px; /* Space between step number and label */
+    z-index: 1;
+  }
+  
+  .active .step {
+    background-color: #0284c7;
+  }
+  
+  .complete .step {
+    background-color: #16a34a;
+  }
+  
+  .step-item p {
+    margin: 0;
+    color: #374151;
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+  
+  /* Responsive styling */
+@media (max-width: 639px) {
+  .step-item p {
+      display: none; /* Hide text on screens smaller than 640px */
+  }
+}
+  
+  
+  

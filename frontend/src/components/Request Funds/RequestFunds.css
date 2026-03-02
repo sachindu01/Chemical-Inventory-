@@ -1,0 +1,30 @@
+
+.bodyContainer{
+    background-color:white;
+    padding-top: 2%;
+    display: block;
+    
+}
+
+.application-form-title {
+    line-height: 40.86px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+    color: #021F2F;
+  }
+
+
+  
+.stepperContainer {
+    margin-bottom: 20px;
+  }
+
+.formContainer {
+    margin-bottom: 20px;
+  } 
+  
+.buttonContainer {
+    display: flex;
+    justify-content: left;
+  }

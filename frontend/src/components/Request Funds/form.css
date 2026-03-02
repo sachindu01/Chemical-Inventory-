@@ -1,0 +1,139 @@
+/* General styles for the container */
+.formSection{
+    background-color: white; /* Light grey background to match the screenshot */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+/* Style for form rows */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5; /* White background for each form row */
+    padding: 20px;
+    border-radius: 4px;
+    }
+
+/* Style for labels */
+.form-label {
+    flex: 1;
+    color: #00334E; /* Label color */
+    font-size: 16px;
+    font-weight: normal;
+    padding-left: 100px;
+    text-align: left; /* Align labels to the left */
+    }
+      
+/* Style for input fields */
+.form-input {
+    flex: 2;
+}
+      
+.form-control {
+    width: 90%;
+    border: 1px solid #97bfd4; /* Border color for input fields */
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+    }  
+
+.contact-info-lecturer{
+        color: #00334E;
+        font-size: 18px;
+        font-weight: 500;
+}
+
+.contact-info-title{
+    color: #00334E;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.radio-item {
+    margin-bottom: 15px; 
+}
+
+.date-input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.report{
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 100px;
+    width: 100%;
+}
+
+.report label {
+    margin-bottom: 10px;
+    color: #00334E; 
+}
+  
+.error-text {
+    display: block;
+    color: red;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+  
+.file-instructions {
+    margin-bottom: 10px;
+    color: #828282;
+}
+
+.pdf-input{
+    font-size: 16px;
+    
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column; /* Stack labels and inputs vertically */
+        align-items: flex-start; /* Align items to the start of the row */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .form-label {
+        padding-left: 0; /* Remove left padding on smaller screens */
+        margin-bottom: 5px; /* Add margin below label */
+        text-align: left; /* Keep text aligned left */
+    }
+
+    .form-input,.report,.form-control, .date-input, .pdf-input{
+        width: 100%; 
+    }
+
+    .report {
+        padding-left: 0; 
+        text-align: left;
+        margin-top: 10px; 
+    }
+
+    .report label, .error-text, .file-instructions {
+        width: 100%; 
+        text-align: left; 
+        padding-left: 0; 
+    }
+
+    .report, .error-text,.date-input,.radio-group{
+        font-size: 14px;
+    }
+
+    .pdf-input {
+        margin-top: 5px; 
+    }
+}
