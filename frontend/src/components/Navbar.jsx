@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex items-center justify-between py-8 px-5 font-medium bg-yellow-100 ${headerFixed ? "navbar-fixed fadeInDown" : ""
+      className={`flex items-center justify-between py-6 px-5 font-medium bg-white border-b border-slate-200 shadow-sm ${headerFixed ? "navbar-fixed fadeInDown" : ""
         }`}
     >
       <Link to="/">
@@ -53,33 +53,33 @@ const Navbar = () => {
           />
 
           <div className="ml-2 hidden lg:block">
-            <p className="m-0 text-black text-sm">
+            <p className="m-0 text-slate-800 text-sm font-semibold tracking-wide">
               Department of Chemistry
             </p>
-            <p className="m-0 text-black text-xs">University of Peradeniya</p>
+            <p className="m-0 text-slate-500 text-xs tracking-wider">University of Peradeniya</p>
           </div>
         </div>
       </Link>
 
-      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
-        <NavLink to="/" className="flex flex-col items-center gap-1">
+      <ul className="hidden sm:flex gap-6 text-sm text-slate-600">
+        <NavLink to="/" className="flex flex-col items-center gap-1 hover:text-teal-700 transition">
           <p>HOME</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          <hr className="w-2/4 border-none h-[2px] bg-teal-600 hidden" />
         </NavLink>
 
-        <NavLink to="/dashboard" className="flex flex-col items-center gap-1">
+        <NavLink to="/dashboard" className="flex flex-col items-center gap-1 hover:text-teal-700 transition">
           <p>DASHBOARD</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          <hr className="w-2/4 border-none h-[2px] bg-teal-600 hidden" />
         </NavLink>
 
-        <NavLink to="/inventory" className="flex flex-col items-center gap-1">
+        <NavLink to="/inventory" className="flex flex-col items-center gap-1 hover:text-teal-700 transition">
           <p>INVENTORY</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          <hr className="w-2/4 border-none h-[2px] bg-teal-600 hidden" />
         </NavLink>
 
-        <NavLink to="/contact" className="flex flex-col items-center gap-1">
+        <NavLink to="/contact" className="flex flex-col items-center gap-1 hover:text-teal-700 transition">
           <p>CONTACT</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          <hr className="w-2/4 border-none h-[2px] bg-teal-600 hidden" />
         </NavLink>
       </ul>
 
@@ -112,8 +112,8 @@ const Navbar = () => {
 
         {token && userRole === "STUDENT" && (
           <Link to="/cart" className="relative">
-            <img src={assets.cart_icon} className="w-5 min-w-5" alt="Cart" />
-            <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+            <img src={assets.cart_icon} className="w-5 min-w-5 grayscale" alt="Request Basket" />
+            <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-teal-600 text-white aspect-square rounded-full text-[8px] font-bold">
               {getCartCount()}
             </p>
           </Link>

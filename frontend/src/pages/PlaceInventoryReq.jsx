@@ -37,44 +37,44 @@ const PlaceInventoryReq = () => {
   const OnSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-        let orderItems = [];
-        console.log("Cart Items:", cartItems); // Check contents of cartItems
-        console.log("Available Products:", products); // Check available products
+      let orderItems = [];
+      console.log("Cart Items:", cartItems); // Check contents of cartItems
+      console.log("Available Products:", products); // Check available products
 
-        for (const itemId in cartItems) {
-            const itemInfo = products.find((product) => product._id === itemId); // Find product based on itemId
-            if (itemInfo) {
-                const clonedItem = structuredClone(itemInfo);
-                clonedItem.quantity = cartItems[itemId].quantity; // Access quantity from the nested object
-                clonedItem.unit = cartItems[itemId].unit; // Access unit from the nested object
-                orderItems.push(clonedItem);
-            }
+      for (const itemId in cartItems) {
+        const itemInfo = products.find((product) => product._id === itemId); // Find product based on itemId
+        if (itemInfo) {
+          const clonedItem = structuredClone(itemInfo);
+          clonedItem.quantity = cartItems[itemId].quantity; // Access quantity from the nested object
+          clonedItem.unit = cartItems[itemId].unit; // Access unit from the nested object
+          orderItems.push(clonedItem);
         }
+      }
 
-        console.log("Order Data", orderItems); // Log orderItems after loop
+      console.log("Order Data", orderItems); // Log orderItems after loop
 
-        let orderData = {
-            items: orderItems,
-            userInfo,
-            projectInfo,
-        };
+      let orderData = {
+        items: orderItems,
+        userInfo,
+        projectInfo,
+      };
 
-        const response = await axios.post(
-            backendUrl + "/api/order/place",
-            orderData,
-            { headers: { token } }
-        );
-        console.log(response.data);
-        if (response.data.success) {
-            setCartItems({});
-            navigate("/dashboard");
-        } else {
-            toast.error(response.data.message);
-        }
+      const response = await axios.post(
+        backendUrl + "/api/order/place",
+        orderData,
+        { headers: { token } }
+      );
+      console.log(response.data);
+      if (response.data.success) {
+        setCartItems({});
+        navigate("/dashboard");
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-        console.error("Error placing order:", error); // Log any errors
+      console.error("Error placing order:", error); // Log any errors
     }
-};
+  };
 
   return (
     <form
@@ -85,7 +85,7 @@ const PlaceInventoryReq = () => {
       <div className="flex flex-col sm:flex-row justify-between gap-4 w-full">
         {/* Left side - Contact Information */}
         <div className="flex flex-col gap-4 w-full sm:max-w-[600px]">
-          <div className="text-xl sm:text-2xl my-3">
+          <div className="text-xl sm:text-2xl my-3 text-slate-800">
             <Title text1={"CONTACT"} text2={"INFORMATION"} />
           </div>
           <div className="flex gap-3">
@@ -94,7 +94,7 @@ const PlaceInventoryReq = () => {
               onChange={onChangeHandlerUser}
               name="firstName"
               value={userInfo.firstName}
-              className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+              className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
               type="text"
               placeholder="First name"
             />
@@ -103,7 +103,7 @@ const PlaceInventoryReq = () => {
               onChange={onChangeHandlerUser}
               name="lastName"
               value={userInfo.lastName}
-              className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+              className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
               type="text"
               placeholder="Last name"
             />
@@ -113,7 +113,7 @@ const PlaceInventoryReq = () => {
             onChange={onChangeHandlerUser}
             name="email"
             value={userInfo.email}
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
             type="email"
             placeholder="Email address"
           />
@@ -122,7 +122,7 @@ const PlaceInventoryReq = () => {
             onChange={onChangeHandlerUser}
             name="phone"
             value={userInfo.phone}
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
             type="number"
             placeholder="Phone"
           />
@@ -130,7 +130,7 @@ const PlaceInventoryReq = () => {
 
         {/* Right side - Project Information */}
         <div className="flex flex-col gap-4 w-full sm:max-w-[600px]">
-          <div className="text-xl sm:text-2xl my-3">
+          <div className="text-xl sm:text-2xl my-3 text-slate-800">
             <Title text1={"PROJECT"} text2={"INFORMATION"} />
           </div>
           <input
@@ -138,7 +138,7 @@ const PlaceInventoryReq = () => {
             onChange={onChangeHandlerProject}
             name="projectName"
             value={projectInfo.projectName}
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
             type="text"
             placeholder="Project name"
           />
@@ -147,7 +147,7 @@ const PlaceInventoryReq = () => {
             onChange={onChangeHandlerProject}
             name="projectDescription"
             value={projectInfo.projectDescription}
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full h-32"
+            className="border border-slate-300 rounded py-2 px-3.5 w-full h-32 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
             placeholder="Project description"
           />
 
@@ -156,7 +156,7 @@ const PlaceInventoryReq = () => {
             onChange={onChangeHandlerProject}
             name="projectTimeline"
             value={projectInfo.projectTimeline}
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-slate-300 rounded py-2 px-3.5 w-full focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
             type="text"
             placeholder="Timeline (e.g., 3 months)"
           />
@@ -166,7 +166,7 @@ const PlaceInventoryReq = () => {
       <div className="flex justify-center w-full mt-8">
         <button
           type="submit"
-          className="bg-black text-white py-3 px-16 text-sm rounded"
+          className="bg-teal-600 hover:bg-teal-700 transition-colors text-white py-3 px-16 text-sm font-medium rounded shadow-sm"
         >
           Request Items
         </button>

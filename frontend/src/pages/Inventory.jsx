@@ -8,10 +8,10 @@ import Pagination from '../components/Pagination';
 
 const Inventory = () => {
 
-  const { products,search} = useContext(ShopContext);
+  const { products, search } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
-  const [filterProducts,setFilterProducts] = useState(products);
-  const [category,setCategory] = useState([]);
+  const [filterProducts, setFilterProducts] = useState(products);
+  const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [availabilityFilter, setAvailabilityFilter] = useState('All');
 
@@ -22,46 +22,46 @@ const Inventory = () => {
   const indexofLastProduct = currentPage * productsPerPage;
   const indexofFirstProduct = indexofLastProduct - productsPerPage;
   const currentProducts = filterProducts.slice(indexofFirstProduct, indexofLastProduct);
- 
+
   const paginate = (pageNumber) => {
-     setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber);
   };
 
   const subCategoryOptions = {
     Organic: [
-    "Alkanes",
-    "Alkenes",
-    "Alkynes",
-    "Alcohols",
-    "Ethers",
-    "Amines",
-    "Amino Acids",
-    "Carboxylic Acids",
-    "Esters",
-    "Ketones",
-    "Aldehydes",
-    "Nitriles",
-    "Phenols",
-    "Polymers",
-    "Aromatic Compounds"
-  ],
-  Inorganic: [
-    "Acid",
-    "Base",
-    "Salt",
-    "Oxide",
-    "Hydroxide",
-    "Sulfide",
-    "Phosphate",
-    "Nitrate",
-    "Halide",
-    "Carbonate",
-    "Silicate",
-    "Metal",
-    "Non-Metal",
-    "Other"
-  ],
-    
+      "Alkanes",
+      "Alkenes",
+      "Alkynes",
+      "Alcohols",
+      "Ethers",
+      "Amines",
+      "Amino Acids",
+      "Carboxylic Acids",
+      "Esters",
+      "Ketones",
+      "Aldehydes",
+      "Nitriles",
+      "Phenols",
+      "Polymers",
+      "Aromatic Compounds"
+    ],
+    Inorganic: [
+      "Acid",
+      "Base",
+      "Salt",
+      "Oxide",
+      "Hydroxide",
+      "Sulfide",
+      "Phosphate",
+      "Nitrate",
+      "Halide",
+      "Carbonate",
+      "Silicate",
+      "Metal",
+      "Non-Metal",
+      "Other"
+    ],
+
   };
 
   const toggleCategory = (e) => {
@@ -90,20 +90,20 @@ const Inventory = () => {
 
       if (subCategories) {
         return (
-          <div className="border border-gray-300 pl-5 py-3 my-5">
-            <p className="mb-3 text-sm font-medium">SUB CATEGORIES</p>
-            <div className="flex flex-col gap-2 text-sm font-light">
+          <div className="border border-slate-200 bg-white shadow-sm pl-5 py-3 my-5 rounded">
+            <p className="mb-3 text-sm font-semibold text-slate-700 tracking-wide">SUB CATEGORIES</p>
+            <div className="flex flex-col gap-2 text-sm text-slate-600">
               {subCategories.map((subCat, index) => (
-                <p key={index} className="flex gap-2">
+                <label key={index} className="flex gap-2 items-center cursor-pointer hover:text-teal-700 transition">
                   <input
-                    className="w-3"
+                    className="w-3 h-3 accent-teal-600 cursor-pointer"
                     type="checkbox"
                     value={subCat}
                     onChange={toggleSubCategory}
                     checked={subCategory.includes(subCat)}
                   />
                   {subCat}
-                </p>
+                </label>
               ))}
             </div>
           </div>
@@ -116,7 +116,7 @@ const Inventory = () => {
   // Determine the text for Title component based on selected category and subcategory
   const getTitleText = () => {
     const selectedCategory = category.length > 0 ? category[0] : 'ALL';
-    const selectedSubCategory = subCategory.length > 0 ? subCategory.join(' / ')  : 'CHEMICALS'; // Show the first selected subcategory, or default
+    const selectedSubCategory = subCategory.length > 0 ? subCategory.join(' / ') : 'CHEMICALS'; // Show the first selected subcategory, or default
 
     return { text1: selectedCategory, text2: selectedSubCategory };
   };
@@ -128,7 +128,7 @@ const Inventory = () => {
     let productsCopy = [...products];
 
     // Apply Search filter
-    if(search){
+    if (search) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     }
 
@@ -163,76 +163,76 @@ const Inventory = () => {
     setCurrentPage(1);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     applyFilter();
-  },[category,subCategory,availabilityFilter,search,products])
+  }, [category, subCategory, availabilityFilter, search, products])
 
-    // Function to handle availability filter change
-    const handleAvailabilityChange = (e) => {
-      setAvailabilityFilter(e.target.value);
-    };
- 
+  // Function to handle availability filter change
+  const handleAvailabilityChange = (e) => {
+    setAvailabilityFilter(e.target.value);
+  };
+
 
   return (
-    <div> <SearchBar/>
-    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10'>
-      {/* Filter Options */}
-      <div className='min-w-60'> 
-      <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2' >FILTERS
-          <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt=""/>
-        </p>
-        {/* Category Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-        <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
-        <div className="flex flex-col gap-2 text-sm font-light">
-            <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Organic"} checked={category.includes("Organic")} onChange={toggleCategory}/>Organic
-            </p>
-            <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Inorganic"} checked={category.includes("Inorganic")} onChange={toggleCategory}/>Inorganic
-            </p>
-            
-          </div>
-        </div>
-         {/*SubCategory filter */}
-         {renderSubCategoryOptions()}
-        
-      </div>
-      {/*Right Side*/}
-      <div className='flex-1'>
-              <div className='flex justify-between text-base sm:text-2xl mb-4'>
-                <Title text1={titleText.text1.toUpperCase()} text2={titleText.text2.toUpperCase()} />
-               {/*Product Availability */}
-                <select id="availability" value={availabilityFilter} onChange={handleAvailabilityChange}
-                className='border-2 border=grat-300 text-sm px-2 sm:w-auto"' >  
-                  <option value="All">All</option>
-                  <option value="In Stock">In Stock</option>
-                  <option value="Out of Stock">Out of Stock</option>
-                </select>
-            </div>
-              {/*Map Products */}
-              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6'>
-                {
-                  currentProducts.map((item,index)=>(
-                    <ProductItem key={index} name={item.name} image={item.image} availability ={item.availability} id= {item._id} />
-                  ))
-                }
+    <div> <SearchBar />
+      <div className='flex flex-col sm:flex-row gap-1 sm:gap-10'>
+        {/* Filter Options */}
+        <div className='min-w-60'>
+          <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2' >FILTERS
+            <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
+          </p>
+          {/* Category Filter */}
+          <div className={`border border-slate-200 bg-white shadow-sm pl-5 py-3 mt-6 rounded ${showFilter ? '' : 'hidden'} sm:block`}>
+            <p className='mb-3 text-sm font-semibold text-slate-700 tracking-wide'>CATEGORIES</p>
+            <div className="flex flex-col gap-2 text-sm text-slate-600">
+              <label className="flex gap-2 items-center cursor-pointer hover:text-teal-700 transition">
+                <input className="w-3 h-3 accent-teal-600 cursor-pointer" type="checkbox" value={"Organic"} checked={category.includes("Organic")} onChange={toggleCategory} />Organic
+              </label>
+              <label className="flex gap-2 items-center cursor-pointer hover:text-teal-700 transition">
+                <input className="w-3 h-3 accent-teal-600 cursor-pointer" type="checkbox" value={"Inorganic"} checked={category.includes("Inorganic")} onChange={toggleCategory} />Inorganic
+              </label>
 
-              </div>
-              {/* Pagination */}
-              <Pagination
-                productsPerPage={productsPerPage}
-                totalProducts={filterProducts.length}
-                paginate={paginate}
-                activePage={currentPage}
-              />
-      </div>
+            </div>
+          </div>
+          {/*SubCategory filter */}
+          {renderSubCategoryOptions()}
+
+        </div>
+        {/*Right Side*/}
+        <div className='flex-1'>
+          <div className='flex justify-between text-base sm:text-2xl mb-4'>
+            <Title text1={titleText.text1.toUpperCase()} text2={titleText.text2.toUpperCase()} />
+            {/*Product Availability */}
+            <select id="availability" value={availabilityFilter} onChange={handleAvailabilityChange}
+              className='border border-slate-300 bg-white text-slate-700 rounded text-sm px-3 py-1 sm:w-auto shadow-sm focus:outline-none focus:ring-1 focus:ring-teal-500' >
+              <option value="All">All Statuses</option>
+              <option value="In Stock">In Stock Only</option>
+              <option value="Out of Stock">Out of Stock</option>
+            </select>
+          </div>
+          {/*Map Products */}
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6'>
+            {
+              currentProducts.map((item, index) => (
+                <ProductItem key={index} name={item.name} image={item.image} availability={item.availability} id={item._id} />
+              ))
+            }
+
+          </div>
+          {/* Pagination */}
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={filterProducts.length}
+            paginate={paginate}
+            activePage={currentPage}
+          />
+        </div>
 
 
 
       </div>
     </div>
-    
+
   )
 }
 

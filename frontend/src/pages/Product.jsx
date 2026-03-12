@@ -88,8 +88,8 @@ const Product = () => {
           </p>
 
           {/* Description as List */}
-          <div className="mt-5 mb-5 text-gray-500 md:w-4/5">
-            <h3 className="font-bold text-lg mb-3">Description:</h3>
+          <div className="mt-5 mb-5 text-slate-600 md:w-4/5">
+            <h3 className="font-semibold text-lg mb-3 text-slate-800 tracking-wide">Description:</h3>
             <ul className="list-disc ml-5">
               {productData.description.map((point, index) => (
                 <li key={index}>{point.trim()}</li>
@@ -131,19 +131,18 @@ const Product = () => {
 
           <button
             onClick={() => addToCart(productData._id, quantity, unit)}
-            className={`bg-black text-white px-8 py-3 text-sm mt-4 ${
-              productData.quantity === 0
-                ? "bg-gray-500 cursor-not-allowed"
-                : "active:bg-gray-700 hover:bg-green-700"
-            }`}
+            className={`text-white px-8 py-3 text-sm mt-4 font-medium rounded shadow-sm tracking-wide transition-colors ${productData.quantity === 0
+              ? "bg-slate-400 cursor-not-allowed"
+              : "bg-teal-600 hover:bg-teal-700 active:bg-teal-800"
+              }`}
             disabled={!productData.availability || productData.quantity === 0}
           >
             {productData.availability && productData.quantity > 0
-              ? "ADD TO CART"
+              ? "ADD TO REQUEST"
               : "OUT OF STOCK"}
           </button>
 
-          <hr className="mt-8 sm:w-4/5" />
+          <hr className="mt-8 sm:w-4/5 border-slate-200" />
         </div>
       </div>
     </div>

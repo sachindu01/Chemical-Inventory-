@@ -10,7 +10,14 @@ import connectDB from './config/mongodb.js';
 
 const migrateUsers = async () => {
     try {
-        await connectDB();
+        mongoose.connection.on('connected', () => {
+            console.log("DB Connected for Migration");
+        });
+
+        await mongoose.connect(`${process.env.MONGODB_URI}Chemical_Inventory`, {
+            serverSelectionTimeoutMS: 5000,
+            family: 4
+        });
 
         // Update old "user" role to "STUDENT"
         const studentResult = await userModel.updateMany(

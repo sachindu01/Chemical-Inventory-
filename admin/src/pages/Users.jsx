@@ -37,10 +37,10 @@ const Users = ({ token }) => {
 
   return (
     <div>
-      <h2 className="mb-2">Users</h2>
+      <h2 className="mb-4 text-xl font-bold text-slate-800 tracking-wide">Users</h2>
 
       {/* User Table */}
-      <div className="grid grid-cols-[2fr_3fr_1fr_1fr] gap-2 bg-gray-100 p-3 font-semibold border-b">
+      <div className="grid grid-cols-[2fr_3fr_1fr_1fr] gap-2 bg-slate-50 p-3 font-semibold border border-slate-200 rounded-t-md text-slate-700 tracking-wide">
         <p>Name</p>
         <p>Email</p>
         <p>Role</p>
@@ -51,14 +51,14 @@ const Users = ({ token }) => {
       {users.map((user, index) => (
         <div
           key={index}
-          className="grid grid-cols-[2fr_3fr_1fr_1fr] gap-2 p-2 border-b"
+          className="grid grid-cols-[2fr_3fr_1fr_1fr] gap-2 p-3 border border-slate-200 border-t-0 bg-white hover:bg-slate-50 transition text-sm text-slate-700 items-center"
         >
-          <p>{user.name}</p>
+          <p className="font-medium text-slate-800">{user.name}</p>
           <p>{user.email}</p>
-          <p>{user.userRole}</p>
+          <p><span className="bg-slate-100 px-2 py-1 rounded-full text-xs font-semibold">{user.userRole}</span></p>
           <Link
             to={`/user/${user._id}`}
-            className="text-blue-500 hover:underline"
+            className="text-teal-600 font-medium hover:text-teal-800 hover:underline transition"
           >
             View User
           </Link>

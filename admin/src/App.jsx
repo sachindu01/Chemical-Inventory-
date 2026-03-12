@@ -52,7 +52,7 @@ const App = () => {
   }, [token]);
 
   return (
-    <div className="bg-yellow-50 min-h-screen">
+    <div className="bg-slate-50 min-h-screen">
       <ToastContainer />
       {token === "" ? (
         <Login setToken={setToken} setUserRole={setUserRole} />

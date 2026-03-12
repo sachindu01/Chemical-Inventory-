@@ -19,7 +19,7 @@ import RoleRoute from "./PrivateRoute/RoleRoute";
 
 const App = () => {
   return (
-    <div className="bg-yellow-50 min-h-screen px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+    <div className="bg-slate-50 min-h-screen px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
       <ToastContainer />
       <Navbar />
 

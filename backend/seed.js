@@ -11,7 +11,14 @@ import connectDB from './config/mongodb.js';
 
 const seedStaffUsers = async () => {
     try {
-        await connectDB();
+        mongoose.connection.on('connected', () => {
+            console.log("DB Connected for Seeding");
+        });
+
+        await mongoose.connect(`${process.env.MONGODB_URI}Chemical_Inventory`, {
+            serverSelectionTimeoutMS: 5000,
+            family: 4 // Use IPv4, skip trying IPv6
+        });
 
         const staffToCreate = [
             {

@@ -29,7 +29,7 @@ const Cart = () => {
   return (
     <div className="border-t pt-14">
       <div className="text-2xl mb-3">
-        <Title text1={"YOUR"} text2={"CART"} />
+        <Title text1={"YOUR"} text2={"REQUEST BASKET"} />
       </div>
       <div>
         {cartData.map((item, index) => {
@@ -46,7 +46,7 @@ const Cart = () => {
           return (
             <div
               key={index}
-              className="py-4 border-t border-b text-gray-700 grid grid-cols-3 items-center gap-4"
+              className="py-4 border-t border-b border-slate-200 text-slate-700 grid grid-cols-3 items-center gap-4 hover:bg-slate-50 transition"
             >
               {/* Product Details */}
               <div className="flex items-start gap-6 col-span-1">
@@ -56,7 +56,7 @@ const Cart = () => {
                   alt=""
                 />
                 <div>
-                  <p className="text-xs sm:text-lg font-medium">
+                  <p className="text-xs sm:text-lg font-medium text-slate-800">
                     {productData.name}
                   </p>
                 </div>
@@ -70,13 +70,13 @@ const Cart = () => {
                       ? null
                       : updateQuantity(item._id, Number(e.target.value), item.unit)
                   }
-                  className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
+                  className="border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500 max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 bg-white"
                   type="number"
                   min={1}
                   max={productData.quantity}
                 />
                 {/* Adjusted margin to bring unit closer */}
-                <span className="ml-2">{item.unit}</span> {/* Display unit */}
+                <span className="ml-2 text-slate-600 font-medium">{item.unit}</span> {/* Display unit */}
               </div>
               {/* Bin Icon */}
               <div className="flex items-center justify-between col-span-1">
@@ -86,7 +86,7 @@ const Cart = () => {
                   src={assets.bin_icon}
                   alt=""
                 />
-                
+
               </div>
             </div>
           );
@@ -100,13 +100,13 @@ const Cart = () => {
                 navigate("/inventory-form");
                 console.log("Cart Data:", cartData); // Log cart data
               } else {
-                toast.error("No products in Cart");
+                toast.error("No chemicals in Request Basket");
                 return;
               }
             }}
-            className="bg-black text-white text-sm my-8 px-8 py-3"
+            className="bg-teal-600 hover:bg-teal-700 transition duration-200 text-white text-sm font-medium my-8 px-8 py-3 rounded shadow-sm tracking-wide"
           >
-            PROCEED TO CHECKOUT
+            PROCEED TO REQUEST
           </button>
         </div>
       </div>

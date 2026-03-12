@@ -20,43 +20,43 @@ const Add = ({ token }) => {
   const [subCategory, setSubCategory] = useState("");
   const [location, setLocation] = useState("");
 
-  
+
   const subCategoryOptions = {
     Organic: [
-    "Alkanes",
-    "Alkenes",
-    "Alkynes",
-    "Alcohols",
-    "Ethers",
-    "Amines",
-    "Amino Acids",
-    "Carboxylic Acids",
-    "Esters",
-    "Ketones",
-    "Aldehydes",
-    "Nitriles",
-    "Phenols",
-    "Polymers",
-    "Aromatic Compounds"
-  ],
-  Inorganic: [
-    "Acid",
-    "Base",
-    "Salt",
-    "Oxide",
-    "Hydroxide",
-    "Sulfide",
-    "Phosphate",
-    "Nitrate",
-    "Halide",
-    "Carbonate",
-    "Silicate",
-    "Metal",
-    "Non-Metal",
-    "Other"
-  ],
-    
-  };
+      "Alkanes",
+      "Alkenes",
+      "Alkynes",
+      "Alcohols",
+      "Ethers",
+      "Amines",
+      "Amino Acids",
+      "Carboxylic Acids",
+      "Esters",
+      "Ketones",
+      "Aldehydes",
+      "Nitriles",
+      "Phenols",
+      "Polymers",
+      "Aromatic Compounds"
+    ],
+    Inorganic: [
+      "Acid",
+      "Base",
+      "Salt",
+      "Oxide",
+      "Hydroxide",
+      "Sulfide",
+      "Phosphate",
+      "Nitrate",
+      "Halide",
+      "Carbonate",
+      "Silicate",
+      "Metal",
+      "Non-Metal",
+      "Other"
+    ],
+
+  };
   const unitOptions = ["g", "kg", "L", "mL", "units"];
 
   const handleCategoryChange = (e) => {
@@ -165,11 +165,11 @@ const Add = ({ token }) => {
         </div>
       </div>
       <div className="w-full">
-        <p className="mb-2">Product Location</p>
+        <p className="mb-2 font-medium text-slate-700">Product Location</p>
         <input
           onChange={(e) => setLocation(e.target.value)}
           value={location}
-          className="w-full max-w-[500px] px-3 py-2"
+          className="w-full max-w-[500px] px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500 transition-shadow"
           type="text"
           placeholder="Type here"
           required
@@ -177,11 +177,11 @@ const Add = ({ token }) => {
       </div>
 
       <div className="w-full">
-        <p className="mb-2">Product Name</p>
+        <p className="mb-2 font-medium text-slate-700">Product Name</p>
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className="w-full max-w-[500px] px-3 py-2"
+          className="w-full max-w-[500px] px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500 transition-shadow"
           type="text"
           placeholder="Type here"
           required
@@ -189,11 +189,11 @@ const Add = ({ token }) => {
       </div>
 
       <div className="w-full">
-        <p className="mb-2">Product Description</p>
+        <p className="mb-2 font-medium text-slate-700">Product Description</p>
         <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
-          className="w-full max-w-[500px] px-3 py-2"
+          className="w-full max-w-[500px] px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500 transition-shadow"
           placeholder="Write content here"
           required
         />
@@ -202,8 +202,8 @@ const Add = ({ token }) => {
       {/* Product Category and Subcategory */}
       <div className="flex flex-col sm:flex-row gap-2 w-full sm:gap-8">
         <div>
-          <p className="mb-2">Product Category</p>
-          <select className="w-full px-3 py-2"
+          <p className="mb-2 font-medium text-slate-700">Product Category</p>
+          <select className="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500"
             value={category}
             onChange={handleCategoryChange}
             required
@@ -216,8 +216,8 @@ const Add = ({ token }) => {
 
         {/* Subcategory Dropdown */}
         <div>
-          <p className="mb-2">Product Sub Category</p>
-          <select className="w-full px-3 py-2"
+          <p className="mb-2 font-medium text-slate-700">Product Sub Category</p>
+          <select className="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500"
             value={subCategory}
             onChange={(e) => setSubCategory(e.target.value)}
             required
@@ -233,11 +233,11 @@ const Add = ({ token }) => {
         </div>
 
         <div>
-          <p className="mb-2">Quantity</p>
+          <p className="mb-2 font-medium text-slate-700">Quantity</p>
           <input
             onChange={(e) => setQuantity(e.target.value)}
             value={quantity}
-            className="w-full px-3 py-2 sm:w-[120px]"
+            className="w-full px-3 py-2 sm:w-[120px] border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500"
             type="Number"
             placeholder="1"
             min="1"
@@ -247,8 +247,8 @@ const Add = ({ token }) => {
 
         {/* Unit Dropdown */}
         <div>
-          <p className="mb-2">Unit</p>
-          <select className="w-full px-3 py-2"
+          <p className="mb-2 font-medium text-slate-700">Unit</p>
+          <select className="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-teal-500"
             value={unit}
             onChange={(e) => setUnit(e.target.value)}
             required
@@ -263,8 +263,8 @@ const Add = ({ token }) => {
         </div>
       </div>
 
-      <button type="submit" className="w-28 py-3 mt-4 bg-black text-white">
-        ADD
+      <button type="submit" className="w-32 py-3 mt-6 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded shadow-sm tracking-wide transition">
+        ADD PRODUCT
       </button>
     </form>
   );

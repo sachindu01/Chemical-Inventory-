@@ -119,9 +119,9 @@ const Dashboard = () => {
         {requests.map((req, index) => (
           <div
             key={index}
-            className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-b border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700"
+            className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-center border border-slate-200 bg-white rounded-lg shadow-sm p-4 md:p-6 my-4 text-xs sm:text-sm text-slate-700 hover:shadow-md transition-shadow"
           >
-            <img className="w-16 sm:w-20" src={assets.chemical_icon} alt="Parcel Icon" />
+            <img className="w-14 sm:w-16 grayscale opacity-80" src={assets.chemical_icon} alt="Chemical Icon" />
             <div>
               <div>
                 {req.items.map((item, index) => (
@@ -133,8 +133,8 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div>
-              <p>Chemicals: {req.items.length}</p>
+            <div className="text-slate-500">
+              <p className="font-medium text-slate-700">Chemicals: {req.items.length}</p>
               <p>Date: {new Date(req.date).toDateString()}</p>
             </div>
 
@@ -142,20 +142,20 @@ const Dashboard = () => {
               <div className="flex items-center gap-2">
                 {req.status === "accepted" && (
                   <>
-                    <div className="min-w-2 h-2 rounded-full bg-green-500"></div>
-                    <p className="text-sm md:text-base">Request Accepted</p>
+                    <div className="min-w-2 h-2 rounded-full bg-teal-500"></div>
+                    <p className="text-sm md:text-base font-medium text-teal-700">Request Accepted</p>
                   </>
                 )}
                 {req.status === "declined" && (
                   <>
-                    <div className="min-w-2 h-2 rounded-full bg-red-500"></div>
-                    <p className="text-sm md:text-base">Request Declined</p>
+                    <div className="min-w-2 h-2 rounded-full bg-rose-500"></div>
+                    <p className="text-sm md:text-base font-medium text-rose-700">Request Declined</p>
                   </>
                 )}
                 {req.status === "pending" && (
                   <>
-                    <div className="min-w-2 h-2 rounded-full bg-yellow-500"></div>
-                    <p className="text-sm md:text-base">Pending</p>
+                    <div className="min-w-2 h-2 rounded-full bg-amber-500"></div>
+                    <p className="text-sm md:text-base font-medium text-amber-700">Pending</p>
                   </>
                 )}
               </div>
@@ -164,7 +164,7 @@ const Dashboard = () => {
             <div>
               {req.status === "accepted" && (
                 <button
-                  className="border py-2 px-4 bg-blue-500 text-white font-medium rounded-sm"
+                  className="w-full border py-2 px-4 bg-teal-600 text-white font-medium rounded hover:bg-teal-700 transition"
                   onClick={() => handleButtonClick("inventory", "accepted", req._id)}
                 >
                   Download PDF
@@ -172,7 +172,7 @@ const Dashboard = () => {
               )}
               {req.status === "declined" && (
                 <button
-                  className="border py-2 px-4 bg-red-500 text-white font-medium rounded-sm"
+                  className="w-full border py-2 px-4 bg-rose-600 text-white font-medium rounded hover:bg-rose-700 transition"
                   onClick={() => handleButtonClick("inventory", "declined", req._id)}
                 >
                   Request Again
@@ -181,7 +181,7 @@ const Dashboard = () => {
               {req.status === "pending" && (
                 <button
                   onClick={loadOrderData}
-                  className="border py-2 px-4 text-sm font-medium rounded-sm"
+                  className="w-full border border-slate-300 py-2 px-4 text-sm font-medium rounded hover:bg-slate-50 transition text-slate-700"
                 >
                   Track Request
                 </button>

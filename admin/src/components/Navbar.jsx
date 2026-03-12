@@ -4,7 +4,7 @@ import { assets } from "../assets/admin_assets/assets";
 const Navbar = ({ setToken }) => {
   return (
 
-    <div className="bg-yellow-100 flex item-center py-2 px-[4%] justify-between">
+    <div className="bg-white border-b border-slate-200 shadow-sm flex item-center py-3 px-[4%] justify-between">
 
       <div className="flex items-center">
         <img
@@ -13,11 +13,11 @@ const Navbar = ({ setToken }) => {
           alt="uni logo"
         />
 
-        <div className="ml-2 hidden lg:block">
-          <p className="m-0 text-black text-m" style={{ fontWeight: 'bold' }}>
+        <div className="ml-2 hidden lg:block tracking-wide">
+          <p className="m-0 text-slate-800 text-m font-bold">
             Department of Chemistry
           </p>
-          <p className="m-0 text-black text-sm" style={{ fontWeight: 'bold' }}>University of Peradeniya</p>
+          <p className="m-0 text-slate-600 text-sm font-semibold">University of Peradeniya</p>
         </div>
       </div>
 
@@ -26,7 +26,7 @@ const Navbar = ({ setToken }) => {
           setToken("");
           localStorage.removeItem("token");
         }}
-        className="bg-gray-600 text-white px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm"
+        className="bg-slate-600 hover:bg-slate-700 transition text-white px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm font-medium tracking-wide shadow-sm"
       >
         Logout
       </button>
