@@ -1,11 +1,12 @@
 import {v2 as cloudinary} from "cloudinary"
 import productModel from '../models/productModel.js';
+import mongoose from 'mongoose';
 
 
 // function for add product
 const addProduct = async (req, res) => {
   try {
-    const { name, description, category, subCategory, availability, quantity, unit,location } = req.body;
+    const { name, description, category, subCategory, availability, quantity, unit, location } = req.body;
 
     const image1 = req.files.image1 && req.files.image1[0];
     const image2 = req.files.image2 && req.files.image2[0];
@@ -45,76 +46,85 @@ const addProduct = async (req, res) => {
       location
     };
 
-    console.log(productsData);
-
     const product = new productModel(productsData);
     await product.save();
 
-    res.json({ success: true, message: "Product added" });
+    res.status(201).json({ success: true, message: "Product added" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: error.message });
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
 
 
 // function for list products
-const listProducts = async (req,res) => {
+const listProducts = async (req, res) => {
     try {
-
         const products = await productModel.find({});
-        res.json({success:true,products})
-        
+        res.json({ success: true, products })
     } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
-   
+        console.error(error)
+        res.status(500).json({ success: false, message: error.message })
     }
-    
 }
 
 // function to remove products
-const removeProduct = async (req,res) => {
+const removeProduct = async (req, res) => {
     try {
-        await productModel.findByIdAndDelete(req.body.id)
-        res.json({success:true,message:"Product removed"})
-        
+        const { id } = req.body;
+
+        if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ success: false, message: "Invalid or missing product ID" });
+        }
+
+        const product = await productModel.findByIdAndDelete(id);
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+
+        res.json({ success: true, message: "Product removed" })
     } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
-        
+        console.error(error)
+        res.status(500).json({ success: false, message: error.message })
     }
-    
 }
 
 // function for single product info
-const singleProduct = async (req,res) => {
+const singleProduct = async (req, res) => {
     try {
-        const {productId} = req.body
+        const { productId } = req.body
+
+        if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+            return res.status(400).json({ success: false, message: "Invalid or missing product ID" });
+        }
+
         const product = await productModel.findById(productId)
-        res.json({success:true,product})
-        
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+
+        res.json({ success: true, product })
     } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
-        
+        console.error(error)
+        res.status(500).json({ success: false, message: error.message })
     }
-    
 }
 
 // function to update products
-const updateProduct = async (req,res) => {
-
+const updateProduct = async (req, res) => {
   try {
-
       const { productId, quantity } = req.body;
+
+      if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+          return res.status(400).json({ success: false, message: "Invalid or missing product ID" });
+      }
 
       // Find the product by its ID
       const product = await productModel.findById(productId);
 
       if (!product) {
-        return res.json({ success: false, message: "Product not found" });
+        return res.status(404).json({ success: false, message: "Product not found" });
       }
 
       // Update the product's quantity
@@ -122,16 +132,12 @@ const updateProduct = async (req,res) => {
 
       await product.save();
 
-      res.json({ success: true, message: "Product quantity updated " });
-
-      
+      res.json({ success: true, message: "Product quantity updated" });
   } catch (error) {
-      console.log(error)
-      res.json({success:false,message:error.message})
-      
+      console.error(error)
+      res.status(500).json({ success: false, message: error.message })
   }
-  
 }
 
 
-export {listProducts,addProduct,removeProduct,singleProduct,updateProduct}
+export {listProducts, addProduct, removeProduct, singleProduct, updateProduct}

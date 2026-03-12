@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
     isActive: { type: Boolean, default: true },
     cartData: { type: Object, default: {} },
-}, { minimize: false })
+}, { minimize: false, timestamps: true })
 
 const userModel = mongoose.models.user || mongoose.model('user', userSchema)
 

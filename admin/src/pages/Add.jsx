@@ -85,7 +85,7 @@ const Add = ({ token }) => {
       locationImage1 && formData.append("locationImage1", locationImage1);
       locationImage2 && formData.append("locationImage2", locationImage2);
 
-      const response = await axios.post(backendUrl + "/api/product/add", formData, { headers: { token } });
+      const response = await axios.post(backendUrl + "/api/product/add", formData, { headers: { Authorization: `Bearer ${token}` } });
 
       if (response.data.success) {
         toast.success(response.data.message);

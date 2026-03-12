@@ -23,7 +23,7 @@ const Login = ({ setToken, setUserRole }) => {
                 // Fetch user role immediately before letting them through
                 try {
                     const meResponse = await axios.get(backendUrl + '/api/user/me', {
-                        headers: { token: newToken }
+                        headers: { Authorization: `Bearer ${newToken}` }
                     });
 
                     if (meResponse.data.success) {

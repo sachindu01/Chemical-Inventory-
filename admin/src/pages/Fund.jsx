@@ -21,7 +21,7 @@ const Fund = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/fund/list",
         {},
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {
@@ -57,7 +57,7 @@ const Fund = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/fund/status",
         { reqId, status: newStatus },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {
         await fetchAllFundRequests();
@@ -96,7 +96,7 @@ const Fund = ({ token }) => {
         backendUrl + "/api/fund/issue",
         { reqId, issuedDate },
         {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       if (response.data.success) {

@@ -35,7 +35,7 @@ const App = () => {
       }
       try {
         const response = await axios.get(backendUrl + '/api/user/me', {
-          headers: { token }
+          headers: { Authorization: `Bearer ${token}` }
         });
         if (response.data.success) {
           setUserRole(response.data.user.userRole);

@@ -12,8 +12,8 @@ const productSchema = new mongoose.Schema({
     date: { type: Number, required: true },
     unit: { type: String, required: true },
     location: { type: String, required: true }
-  });
-  
+  }, { timestamps: true });
+
   // Pre-save middleware to update availability based on quantity
   productSchema.pre('save', function (next) {
     if (this.quantity === 0) {
@@ -23,13 +23,7 @@ const productSchema = new mongoose.Schema({
     }
     next();
   });
-  
+
 const productModel = mongoose.models.product || mongoose.model("product", productSchema);
-  
+
 export default productModel;
-
-
-
-
-
-

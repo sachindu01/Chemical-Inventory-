@@ -15,7 +15,7 @@ const UserProfile = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/user/userid",
         { userId: id },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {
@@ -36,7 +36,7 @@ const UserProfile = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/user/role/userid",
         { userId, userRole: newRole },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {
         await fetchUser();
@@ -58,7 +58,7 @@ const UserProfile = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/user/delete",
         { userId },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {
         toast.success("User deleted successfully!");

@@ -22,7 +22,7 @@ const Request = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/order/list",
         {},
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {
@@ -56,7 +56,7 @@ const Request = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/order/status",
         { orderId, status: newStatus },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {
         await fetchAllOrders();
@@ -96,7 +96,7 @@ const Request = ({ token }) => {
         backendUrl + "/api/order/issue",
         { reqId },
         {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
@@ -116,7 +116,7 @@ const Request = ({ token }) => {
         backendUrl + "/api/order/return",
         { reqId },
         {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       if (response.data.success) {

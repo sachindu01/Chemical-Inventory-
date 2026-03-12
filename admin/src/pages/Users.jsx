@@ -17,7 +17,7 @@ const Users = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/user/all",
         {},
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {

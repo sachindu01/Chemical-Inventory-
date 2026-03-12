@@ -154,7 +154,7 @@ formDataToSend.append("budgetDetails", formData.budgetDetails);
       const response = await axios.post(
         backendUrl + "/api/fund/place",
         formDataToSend,
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {

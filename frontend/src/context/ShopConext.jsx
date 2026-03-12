@@ -48,7 +48,7 @@ const ShopContextProvider = (props) => {
         await axios.post(
           `${backendUrl}/api/cart/add`,
           { itemId, quantity, unit },
-          { headers: { token } }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
       } catch (error) {
         console.log(error);
@@ -77,7 +77,7 @@ const ShopContextProvider = (props) => {
         await axios.post(
           `${backendUrl}/api/cart/update`,
           { itemId, quantity },
-          { headers: { token } }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
       } catch (error) {
         console.log(error);
@@ -106,7 +106,7 @@ const ShopContextProvider = (props) => {
       const response = await axios.post(
         `${backendUrl}/api/cart/get`,
         {},
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.data.success) {
         setCartItems(response.data.cartData);
@@ -124,7 +124,7 @@ const ShopContextProvider = (props) => {
     if (!currentToken) return;
     try {
       const response = await axios.get(`${backendUrl}/api/user/me`, {
-        headers: { token: currentToken }
+        headers: { Authorization: `Bearer ${currentToken}` }
       });
       if (response.data.success) {
         setUserRole(response.data.user.userRole);

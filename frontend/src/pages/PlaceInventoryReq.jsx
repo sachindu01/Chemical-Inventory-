@@ -62,7 +62,7 @@ const PlaceInventoryReq = () => {
       const response = await axios.post(
         backendUrl + "/api/order/place",
         orderData,
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(response.data);
       if (response.data.success) {

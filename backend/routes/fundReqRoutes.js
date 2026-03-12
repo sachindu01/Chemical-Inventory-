@@ -13,7 +13,7 @@ fundReqRouter.post('/list', ...staffOnly, allFundReq)
 fundReqRouter.post('/status', ...staffOnly, updateStatus)
 
 // Fund request place features
-fundReqRouter.post('/place', upload.single('budgetDetails'), ...studentOnly, placeFundReq)
+fundReqRouter.post('/place', ...studentOnly, upload.single('budgetDetails'), placeFundReq)
 
 // User features
 fundReqRouter.post('/userreq', requireAuth, userFundReq)
